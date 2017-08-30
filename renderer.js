@@ -2,15 +2,15 @@
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
 
-const BlinkDiff = require('blink-diff')
+const looksSame = require('looks-same')
 const os = require('os')
 const path = require('path')
 
-const imageOutputPath = path.join(os.tmpdir(), 'image-differ.png');
+const outputPath = path.join(os.tmpdir(), 'image-differ.png')
 
-const image1 = document.querySelector('.image1')
-const image2 = document.querySelector('.image2')
-const images = document.querySelectorAll('img')
+const referenceContainer = document.querySelector('.reference')
+const currentContainer = document.querySelector('.current')
+const imgs = document.querySelectorAll('img')
 
 const progress = document.querySelector('.progress')
 
@@ -23,30 +23,33 @@ const onDrop = (img) => {
 }
 
 const onLoad = e => {
-  const paths = Array.from(images, image => image.getAttribute('src') || '')
-  const imageAPath = paths[0]
-  const imageBPath = paths[1]
-  if (imageAPath.length && imageBPath.length) {
-    const diff = new BlinkDiff({
-      imageAPath,
-      imageBPath,
-      imageOutputPath,
-      composition: false,
-    })
-    images[2].src = ''
+  const paths = Array.from(imgs, image => image.getAttribute('src') || '')
+  const referencePath = paths[0]
+  const currentPath = paths[1]
+
+  if (referencePath.length && currentPath.length) {
     progress.classList.add('loading')
-    diff.run((error, result) => {
+    imgs[2].src = ''
+
+    looksSame.createDiff({
+      reference: referencePath,
+      current: currentPath,
+      diff: outputPath,
+      highlightColor: '#ff00ff',
+      strict: false,
+      tolerance: 2.5,
+    }, error => {
       progress.classList.remove('loading')
       if (error) {
         alert(error)
-      } else {
-        images[2].src = imageOutputPath
+        return
       }
+      imgs[2].src = outputPath
     })
   }
 }
 
 document.ondragover = document.ondrop = e => e.preventDefault()
 
-image1.addEventListener('drop', onDrop(images[0]))
-image2.addEventListener('drop', onDrop(images[1]))
+referenceContainer.addEventListener('drop', onDrop(imgs[0]))
+currentContainer.addEventListener('drop', onDrop(imgs[1]))

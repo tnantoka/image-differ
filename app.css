@@ -7,16 +7,16 @@ html, body {
   height: 100%;
 }
 
-.image1,
-.image2,
+.reference,
+.current,
 .output {
   box-sizing: border-box;
   height: 50%;
   overflow: scroll;
 }
 
-.image1,
-.image2 {
+.reference,
+.current {
   width: 50%;
   float: left;
 }
@@ -25,7 +25,7 @@ html, body {
   clear: left;
 }
 
-.image1 {
+.reference {
   border-right: 1px solid rgba(0, 0, 0, 0.12);
 }
 
@@ -43,11 +43,11 @@ img {
   left: 0;
   top: 0;
   height: 4px;
-  width: 0%; 
+  width: 0%;
   background: #2196f3;
 }
 
 .progress.loading {
   transition: width 3s ease-in-out;
-  width: 100%; 
+  width: 100%;
 }
