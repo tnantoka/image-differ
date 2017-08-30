@@ -1,0 +1,53 @@
+body {
+  background: #fafafa;
+  margin: 0;
+}
+
+html, body {
+  height: 100%;
+}
+
+.image1,
+.image2,
+.output {
+  box-sizing: border-box;
+  height: 50%;
+  overflow: scroll;
+}
+
+.image1,
+.image2 {
+  width: 50%;
+  float: left;
+}
+
+.output {
+  clear: left;
+}
+
+.image1 {
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.output {
+  border-top: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+img {
+  max-width: 100%;
+  margin: 0;
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 4px;
+  width: 0%; 
+  background: #2196f3;
+}
+
+.progress.loading {
+  transition: width 3s ease-in-out;
+  width: 100%; 
+}
