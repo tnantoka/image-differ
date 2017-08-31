@@ -1,10 +1,11 @@
 {
-  "name": "electron-quick-start",
+  "name": "image-differ",
   "version": "1.0.0",
   "description": "A minimal Electron application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . --overwrite"
   },
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
@@ -15,9 +16,12 @@
     "demo"
   ],
   "author": "GitHub",
-  "license": "CC0-1.0",
+  "license": "MIT",
   "devDependencies": {
     "electron": "~1.6.2",
+    "electron-packager": "^9.0.0"
+  },
+  "dependencies": {
     "looks-same": "^3.2.1"
   }
 }
