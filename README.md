@@ -1,5 +1,9 @@
 # Image Differ
 
+Image comparing app build with Electron, LooksSame.
+
+![](/screenshot.png)
+
 ## Development
 
 ### Installation
